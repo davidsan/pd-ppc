@@ -47,22 +47,25 @@
       t_multipouet   *m;
       m = (t_multipouet *)pd_new(multipouet_class);
 
-      // initialize step
+      // initialize i_min
       // with a default value
-      m->step = 1;
+
+      m->step = 0;
+      m->i_min = 0;
+      m->i_max = 0;
 
       // initialize step, i_min and i_max
       // from args if args are present
 
       if(argc >= 1){
-        m->i_min = atom_getfloat(argv);
+        m->step = atom_getfloat(argv);
         if(argc >= 2){
-          m->i_max = atom_getfloat(argv+1);
+          m->i_min = atom_getfloat(argv+1);
           if(argc >= 3){
-              m->step = atom_getfloat(argv+2);
+              m->i_max = atom_getfloat(argv+2);
+          }else{
+              m->i_max = m->i_min;
           }
-        }else{
-          m->i_max = m->i_min;
         }
       }
 
