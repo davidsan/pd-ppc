@@ -12,7 +12,7 @@
 #
 
 # add your .c source files, one object per file
-SOURCES = myfft~.c
+SOURCES = myfft~.c scs~.c
 
 # If you need to override the shitty Apple-LLVM CC (like me)
 CC = /usr/bin/gcc
@@ -93,7 +93,7 @@ ifeq ($(UNAME),ANDROID)
   NDK_TOOLCHAIN_BASE=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$(NDK_UNAME)-x86
   CC := $(NDK_TOOLCHAIN_BASE)/bin/arm-linux-androideabi-gcc --sysroot=$(NDK_SYSROOT)
   OPT_CFLAGS = -O6 -funroll-loops -fomit-frame-pointer
-  CFLAGS += 
+  CFLAGS +=
   LDFLAGS += -rdynamic -shared
   SHARED_LDFLAGS += -Wl,-soname,$(SHARED_LIB) -shared
   LIBS += -lc $(LIBS_android)
@@ -155,7 +155,7 @@ ifeq (CYGWIN,$(findstring CYGWIN,$(UNAME)))
   OS = cygwin
   PD_PATH = $(shell cygpath $$PROGRAMFILES)/pd
   OPT_CFLAGS = -O6 -funroll-loops -fomit-frame-pointer
-  ALL_CFLAGS += 
+  ALL_CFLAGS +=
   ALL_LDFLAGS += -rdynamic -shared -L"$(PD_PATH)/src" -L"$(PD_PATH)/bin"
   SHARED_LDFLAGS += -shared -Wl,-soname,$(SHARED_LIB)
   ALL_LIBS += -lc -lpd $(LIBS_cygwin)
